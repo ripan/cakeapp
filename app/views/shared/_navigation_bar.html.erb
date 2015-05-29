@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <%=link_to 'Cake App',  root_url, :class=>"navbar-brand"%>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><%=link_to_acive 'Users',  users_url%></li>
+        <li class="active"><%=link_to_acive 'Tabs',  tabs_url%></li>
+        <li class="active"><%=link_to_acive 'Venues',  venues_url%></li>
+        <li class="active"><%=link_to_acive 'User tabs',  user_tabs_url%></li>
+        <li class="active"><%=link_to_acive 'Payments',  payments_url%></li>
+        <li class="active"><%=link_to_acive 'Reports',  reports_url%></li>
+      </ul>
+    </div>
+  </div>
+</nav>

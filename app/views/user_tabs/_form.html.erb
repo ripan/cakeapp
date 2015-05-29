@@ -1,0 +1,25 @@
+<%= form_for(@user_tab) do |f| %>
+  <% if @user_tab.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_tab.errors.count, "error") %> prohibited this user_tab from being saved:</h2>
+
+      <ul>
+      <% @user_tab.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :tab_id %><br>
+    <%= f.select :tab_id, options_from_collection_for_select(Tab.all, "id", "name", @user_tab.tab.id), {}, :class=>"form-control"%>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.select :user_id, options_from_collection_for_select(User.all, "id", "name", @user_tab.user.id), {}, :class=>"form-control"%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Payments</h1>
+
+<table class="table table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Amount</th>
+      <th>Success</th>
+      <th>User tab</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payments.each do |payment| %>
+      <tr>
+        <td><%= payment.id %></td>
+        <td><%= payment.amount %></td>
+        <td><%= payment.success %></td>
+        <td><%= payment.user_tab.user.name %> | <%= payment.user_tab.tab.name %> | <%= payment.user_tab.tab.venue.name %></td>
+        <td><%= payment.created_at.to_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
