@@ -9,8 +9,5 @@
   <div class="form-group">
   <%= text_field_tag :dateto, '', "data-provide"=>'datepicker', placeholder: 'date to', class: "form-control"%>
   </div>
-  <div class="form-group">
-  <%= select_tag :venue_id, options_from_collection_for_select(Venue.all, "id", "name"), class: "form-control", prompt: 'Select venue'%>
-  </div>
   <%= submit_tag("Generate Report", class: "btn btn-default")%>
 <% end %>

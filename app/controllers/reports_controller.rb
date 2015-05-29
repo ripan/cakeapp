@@ -4,24 +4,20 @@ class ReportsController < ApplicationController
 
   def show_report
 
-    if (params[:venue_id].blank? ||  params[:datefrom].blank? || params[:dateto].blank?)
-      flash[:notice] = "Please select from date, to date and venue"
-      redirect_to :back, :notice => 'Please select from date, to date and venue'
-      return 
+    if (params[:datefrom].blank? || params[:dateto].blank?)
+      redirect_to :back, :notice => 'Please select date range'
+      return
     end
-    
-    venue = Venue.find(params[:venue_id])
-    datefrom = params[:datefrom].getFormattedDate
-    dateto= params[:dateto].getFormattedDate
-    #@payments = Payment.includes(:user_tab).each{|p| p.user_tab if p.user_tab.tab.venue == venue}
-    @payments = []
-    @total = 0
-    pmts = Payment.includes(:user_tab).where(created_at: (datefrom..dateto))
-    pmts.each do |payment|
-      if payment.user_tab.tab.venue==venue
-        @payments << payment
-        @total+=payment.amount
-      end
-    end
+
+    datefrom = Date.parse(params[:datefrom].getFormattedDate)
+    dateto= Date.parse(params[:dateto].getFormattedDate)
+
+    @payments = 
+    Payment
+    .joins({:user_tab => [:user,{:tab=>:venue}]})
+    .select('sum(payments.amount) as total_amount, count(payments) as transactions_count, venues.name as venue_name')
+    .group('venues.id')
+    .where(created_at: (datefrom.beginning_of_day..dateto.end_of_day))
+    .order('total_amount DESC')
   end
 end

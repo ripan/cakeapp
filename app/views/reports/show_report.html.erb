@@ -1,22 +1,19 @@
 <table class="table table-condensed table-hover">
   <thead>
     <tr>
-      <th>Amount</th>
-      <th>Success</th>
-      <th>User tab</th>
-      <th>Date</th>
+      <th>Total Amount</th>
+      <th>Venue</th>
+      <th>Transactions</th>
     </tr>
   </thead>
 
   <tbody>
     <% @payments.each do |payment| %>
       <tr>
-        <td><%= payment.amount %></td>
-        <td><%= payment.success %></td>
-        <td><%= payment.user_tab.user.name %> | <%= payment.user_tab.tab.name %> | <%= payment.user_tab.tab.venue.name %></td>
-        <td><%= payment.created_at.to_s(:db) %></td>
+        <td><%= payment.total_amount %></td>
+        <td><%= payment.venue_name %></td>
+        <td><%= payment.transactions_count %></td>
       </tr>
     <% end %>
-    <tr><td colspan="3"><%=@total%></td><td>TOTAL</td></tr>
   </tbody>
 </table>
