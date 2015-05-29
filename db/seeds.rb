@@ -13,7 +13,7 @@ Tab.destroy_all
 UserTab.destroy_all
 Payment.destroy_all
 
-for i in 1..10
+for i in 1..20
  user = User.create(name: "user #{i}")
  venue = Venue.create(name: "venue #{i}", :address => "address #{i}")
  tab = Tab.create(name: "tab #{i}", :venue => venue) if i.even?
